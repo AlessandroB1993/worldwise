@@ -10,7 +10,7 @@ const initialState = {
 const FAKE_USER = {
   name: "Jack",
   email: "jack@example.com",
-  password: "qwerty",
+  password: "qwerty12345-",
   avatar: "https://i.pravatar.cc/100?u=zz",
 };
 
@@ -34,6 +34,7 @@ function AuthProvider({ children }) {
   function login(email, password) {
     if (FAKE_USER.email === email && FAKE_USER.password === password)
       dispatch({ type: "login", payload: FAKE_USER });
+    else throw new Error("Incorrect email or password.");
   }
 
   function logout() {

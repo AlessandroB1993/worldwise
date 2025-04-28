@@ -1,6 +1,6 @@
 import styles from "./Map.module.css";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
@@ -17,7 +17,6 @@ import {
 import Button from "./Button";
 
 function Map() {
-  const navigate = useNavigate();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
   const {
@@ -55,7 +54,7 @@ function Map() {
         />
         {cities.map((city) => (
           <Marker
-            position={[city.position.lat, city.position.lng]}
+            position={[city.position?.lat, city.position?.lng]}
             key={city.id}
           >
             <Popup>

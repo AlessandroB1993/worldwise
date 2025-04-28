@@ -24,3 +24,10 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.err {
+  color: #eb4022;
+  align-self: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}

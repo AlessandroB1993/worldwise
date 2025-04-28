@@ -8,14 +8,19 @@ import Button from "../components/Button";
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
+  const [password, setPassword] = useState("qwerty12345-");
+  const [error, setError] = useState("");
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (email && password) login(email, password);
+    try {
+      if (email && password) login(email, password);
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    }
   }
 
   useEffect(() => {
@@ -27,6 +32,7 @@ export default function Login() {
       <PageNav />
 
       <form className={styles.form} onSubmit={handleSubmit}>
+        {error && <p className={styles.err}>{error}</p>}
         <div className={styles.row}>
           <label htmlFor="email">Email address</label>
           <input
